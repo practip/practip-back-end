@@ -1,7 +1,7 @@
 'use strict';
 
 const Post = use('App/Model/Post');
-const attributes = ['title', 'description', 'video-url'];
+const attributes = ['title', 'description', 'video-url', 'youtube-id'];
 
 class PostController {
 

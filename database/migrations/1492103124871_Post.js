@@ -9,8 +9,9 @@ class PostSchema extends Schema {
       table.increments();
       table.string('title');
       table.string('description');
-      
+
       table.string('video_url');
+      table.string('youtube_id');
       table.timestamps();
     });
   }

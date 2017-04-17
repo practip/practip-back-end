@@ -17,7 +17,6 @@ class ChallengeController {
 
     const {id: instrument_id} = yield Instrument.query().where({slug: request.jsonApi.getRelationId('instrument')}).first();
 
-
     const foreignKeys = {
       instrument_id,
     };
@@ -39,8 +38,10 @@ class ChallengeController {
     request.jsonApi.assertId(id);
 
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
+    const {id: instrument_id} = yield Instrument.query().where({slug: request.jsonApi.getRelationId('instrument')}).first();
+
     const foreignKeys = {
-      instrument_id: request.jsonApi.getRelationId('instrument'),
+      instrument_id,
     };
 
     const challenge = yield Challenge.with('instrument').where({ id }).firstOrFail();

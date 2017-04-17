@@ -5,12 +5,12 @@ class Challenge extends JsonApiView {
     return ['title', 'description'];
   }
 
-  // posts() {
-  //   return this.hasMany('App/Http/JsonApiViews/Post', {
-  //     included: true,
-  //     excludeRelation: 'challenge'
-  //   });
-  // }
+  posts() {
+    return this.hasMany('App/Http/JsonApiViews/Post', {
+      included: true,
+      excludeRelation: 'challenge'
+    });
+  }
 
   instrument() {
     return this.belongsTo('App/Http/JsonApiViews/Instrument', {
