@@ -17,6 +17,8 @@
 
 const Route = use('Route')
 
-Route.resource('/instruments', 'InstrumentController').except(['create', 'edit']);
+Route.resource('/instruments', 'InstrumentController').except(['create', 'store', 'update', 'edit']);
 Route.resource('/challenges', 'ChallengeController').except(['create', 'edit']);
 Route.resource('/posts', 'PostController').except(['create', 'edit']);
+Route.resource('/users', 'UserController').only(['store']);
+Route.post('/token-auth', 'UserController.login');
