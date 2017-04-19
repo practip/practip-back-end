@@ -10,8 +10,7 @@ class Challenge extends Lucid {
   }
 
   posts() {
-    // return this.hasMany('App/Model/Challenge', 'id', 'challenge_id');
-    // return this.belongsTo('App/Model/Instrument', 'id', 'challenge_id');
+    return this.hasMany('App/Model/Post', 'id', 'challenge_id');
   }
 }
 

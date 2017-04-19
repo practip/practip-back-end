@@ -20,3 +20,4 @@ const Route = use('Route')
 Route.resource('/instruments', 'InstrumentController').except(['create', 'edit']);
 Route.resource('/challenges', 'ChallengeController').except(['create', 'edit']);
 Route.resource('/posts', 'PostController').except(['create', 'edit']);
+Route.resource('/comments', 'CommentController').except(['create', 'edit']);

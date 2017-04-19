@@ -3,11 +3,12 @@
 const Challenge = use('App/Model/Challenge');
 const Instrument = use('App/Model/Instrument');
 const attributes = ['title', 'description'];
+const withRelations = ['instrument', 'posts'];
 
 class ChallengeController {
 
   * index(request, response) {
-    const challenges = yield Challenge.with('instrument').fetch();
+    const challenges = yield Challenge.with(...withRelations).fetch();
 
     response.jsonApi('Challenge', challenges);
   }
@@ -28,7 +29,7 @@ class ChallengeController {
 
   * show(request, response) {
     const id = request.param('id');
-    const challenge = yield Challenge.with('instrument').where({ id }).firstOrFail();
+    const challenge = yield Challenge.with(...withRelations).where({ id }).firstOrFail();
 
     response.jsonApi('Challenge', challenge);
   }
@@ -44,7 +45,7 @@ class ChallengeController {
       instrument_id,
     };
 
-    const challenge = yield Challenge.with('instrument').where({ id }).firstOrFail();
+    const challenge = yield Challenge.with(...withRelations).where({ id }).firstOrFail();
     challenge.fill(Object.assign({}, input, foreignKeys));
     yield challenge.save();
 

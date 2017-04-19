@@ -12,6 +12,8 @@ class PostSchema extends Schema {
 
       table.string('video_url');
       table.string('youtube_id');
+      table.string('challenge_id');
+      table.integer('user_id');
       table.timestamps();
     });
   }

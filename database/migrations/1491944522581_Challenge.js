@@ -9,8 +9,9 @@ class ChallengeSchema extends Schema {
       table.increments();
       table.string('title');
       table.text('description');
-      
+
       table.integer('instrument_id').references('instruments.id');
+      table.integer('user_id');
       table.timestamps();
     });
   }

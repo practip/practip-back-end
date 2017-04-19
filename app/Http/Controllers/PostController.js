@@ -14,6 +14,7 @@ class PostController {
   * store(request, response) {
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
     const foreignKeys = {
+      challenge_id: request.jsonApi.getRelationId('challenge')
     };
     const post = yield Post.create(Object.assign({}, input, foreignKeys));
 

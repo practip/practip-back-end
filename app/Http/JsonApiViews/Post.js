@@ -5,12 +5,12 @@ class Post extends JsonApiView {
     return ['title', 'description', 'video_url', 'youtube_id'];
   }
 
-  // comments() {
-  //   return this.hasMany('App/Http/JsonApiViews/Comment', {
-  //     included: true,
-  //     excludeRelation: 'post'
-  //   });
-  // }
+  comments() {
+    return this.hasMany('App/Http/JsonApiViews/Comment', {
+      included: true,
+      excludeRelation: 'post'
+    });
+  }
 
   challenge() {
     return this.belongsTo('App/Http/JsonApiViews/Challenge', {
