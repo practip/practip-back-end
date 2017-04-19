@@ -1,7 +1,6 @@
 'use strict';
 
 const Schema = use('Schema');
-//user_id to print user
 
 class CommentSchema extends Schema {
 
