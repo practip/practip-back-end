@@ -17,9 +17,12 @@
 
 const Route = use('Route')
 
-Route.resource('/instruments', 'InstrumentController').except(['create', 'store', 'update', 'edit']);
-Route.resource('/challenges', 'ChallengeController').except(['create', 'edit']);
-Route.resource('/posts', 'PostController').except(['create', 'edit']);
-Route.resource('/comments', 'CommentController').except(['create', 'edit']);
+Route.group('protected', function() {
+  Route.resource('/instruments', 'InstrumentController').except(['create', 'store', 'update', 'edit']);
+  Route.resource('/challenges', 'ChallengeController').except(['create', 'edit']);
+  Route.resource('/posts', 'PostController').except(['create', 'edit']);
+  Route.resource('/comments', 'CommentController').except(['create', 'edit']);
+}).middleware('auth')
+
 Route.resource('/users', 'UserController').only(['store']);
 Route.post('/token-auth', 'UserController.login');
