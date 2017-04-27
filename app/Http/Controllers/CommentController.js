@@ -2,7 +2,7 @@
 
 const Comment = use('App/Model/Comment');
 const attributes = ['body'];
-const withRelations = ['posts'];
+const withRelations = ['posts', 'user'];
 
 class CommentController {
 
@@ -15,7 +15,8 @@ class CommentController {
   * store(request, response) {
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
     const foreignKeys = {
-      post_id: request.jsonApi.getRelationId('post')
+      post_id: request.jsonApi.getRelationId('post'),
+      user_id: request.authUser.id,
     };
     const comment = yield Comment.create(Object.assign({}, input, foreignKeys));
 

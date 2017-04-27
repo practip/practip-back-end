@@ -20,6 +20,14 @@ class Challenge extends JsonApiView {
     });
   }
 
+  user() {
+    return this.belongsTo('App/Http/JsonApiViews/User', {
+      included: false,
+      ref: 'slug',
+      excludeRelation: 'challenges'
+    });
+  }
+
 }
 
 module.exports = Challenge;

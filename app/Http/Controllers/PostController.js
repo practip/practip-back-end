@@ -2,11 +2,12 @@
 
 const Post = use('App/Model/Post');
 const attributes = ['title', 'description', 'video-url', 'youtube-id'];
+const withRelations = ['comments', 'user'];
 
 class PostController {
 
   * index(request, response) {
-    const posts = yield Post.with('comments').fetch();
+    const posts = yield Post.with(...withRelations).fetch();
 
     response.jsonApi('Post', posts);
   }
@@ -14,7 +15,8 @@ class PostController {
   * store(request, response) {
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
     const foreignKeys = {
-      challenge_id: request.jsonApi.getRelationId('challenge')
+      challenge_id: request.jsonApi.getRelationId('challenge'),
+      user_id: request.authUser.id,
     };
     const post = yield Post.create(Object.assign({}, input, foreignKeys));
 
@@ -23,7 +25,7 @@ class PostController {
 
   * show(request, response) {
     const id = request.param('id');
-    const post = yield Post.with('comments').where({ id }).firstOrFail();
+    const post = yield Post.with(...withRelations).where({ id }).firstOrFail();
 
     response.jsonApi('Post', post);
   }
@@ -36,7 +38,7 @@ class PostController {
     const foreignKeys = {
     };
 
-    const post = yield Post.with('comments').where({ id }).firstOrFail();
+    const post = yield Post.with(...withRelations).where({ id }).firstOrFail();
     post.fill(Object.assign({}, input, foreignKeys));
     yield post.save();
 

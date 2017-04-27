@@ -19,6 +19,14 @@ class Post extends JsonApiView {
     });
   }
 
+  user() {
+    return this.belongsTo('App/Http/JsonApiViews/User', {
+      included: false,
+      ref: 'slug',
+      excludeRelation: 'posts'
+    });
+  }
+
 }
 
 module.exports = Post;

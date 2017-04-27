@@ -12,6 +12,10 @@ class Challenge extends Lucid {
   posts() {
     return this.hasMany('App/Model/Post', 'id', 'challenge_id');
   }
+
+  user() {
+    return this.belongsTo('App/Model/User', 'id', 'user_id');
+  }
 }
 
 module.exports = Challenge

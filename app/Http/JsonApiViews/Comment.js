@@ -11,6 +11,14 @@ class Comment extends JsonApiView {
       excludeRelation: 'comment'
     });
   }
+
+  user() {
+    return this.belongsTo('App/Http/JsonApiViews/User', {
+      included: false,
+      ref: 'slug',
+      excludeRelation: 'comments'
+    });
+  }
 }
 
 module.exports = Comment;

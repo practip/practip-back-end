@@ -3,7 +3,7 @@
 const Challenge = use('App/Model/Challenge');
 const Instrument = use('App/Model/Instrument');
 const attributes = ['title', 'description'];
-const withRelations = ['instrument', 'posts'];
+const withRelations = ['instrument', 'posts', 'user'];
 
 class ChallengeController {
 
@@ -20,6 +20,7 @@ class ChallengeController {
 
     const foreignKeys = {
       instrument_id,
+      user_id: request.authUser.id,
     };
 
     const challenge = yield Challenge.create(Object.assign({}, input, foreignKeys));
