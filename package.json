@@ -9,7 +9,7 @@
     "serve": "node server.js",
     "lint": "standard",
     "migrate": "node ace migration:run --force",
-    "seed": "node ace db:seed"
+    "seed": "node ace db:seed --force"
   },
   "author": "",
   "license": "MIT",
